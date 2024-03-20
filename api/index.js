@@ -11,6 +11,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api/users/", userRouter);
 app.use("/api/auth/", authRouter);
 
-app.listen(8000, () => {
-  console.log("Server running on port 8000");
+app.listen(8001, () => {
+  console.log("Server running on port 8001");
 });
