@@ -1,22 +1,48 @@
+"use client";
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
+import AuthPage from "../../components/AuthPage";
 
 function Login (){
+
+    const [email, setEmail]=useState("");
+    const [password, setPassword]=useState("");
+
+    const handleLogin = (e:any)=>{
+      e.preventDefault()
+      axios.post("http://localhost:8001/api/auth/login", {email,password}).then((res)=>{
+        console.log(res.data)      
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
+
+    //TA DANDO ERRO AQUI EM ALGUM LUGAR
+
     return (
-        <main className="bg-[url('https://img.freepik.com/fotos-gratis/uma-pintura-de-um-lago-de-montanha-com-uma-montanha-ao-fundo_188544-9126.jpg?w=996&t=st=1710964488~exp=1710965088~hmac=6e7179a1802f8bd2df815178d6703339b96a32917da72c1ccf56cdbff14a2378')] bg-no-repeat bg-cover h-screen flex min-h-screen flex-col items-center justify-center">
-            <form>
-                <h1>LOGIN</h1>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id="email" />
+        <AuthPage>
+                <h1 className="font-bold text-2xl text-grey-600">LOGIN</h1>
+                <div className="flex flex-col justify-between itens-start">
+                    <label htmlFor="email" className="text">Email:</label>
+                    <input 
+                    type="text"
+                    id="email"
+                    onChange={(e) =>setEmail(e.currentTarget.value)}
+                    className="border-gray-400 border-b w-full focus-visible:border-gray-700 focus-visible:border-b focus-visible:outline-none" />
                 </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" />
+                <div className="flex flex-col justify-between itens-start">
+                    <label htmlFor="password" className="text">Password:</label>
+                    <input type="password"
+                    id="password"
+                    onChange={(e) =>setPassword(e.currentTarget.value)}
+                    className="border-gray-400 border-b w-full focus-visible:border-gray-700 focus-visible:border-b focus-visible:outline-none" />
                 </div>
-                <button>ENTRAR</button>
-                <Link href="/register">Cadastrar-se</Link>
-            </form>
-        </main>
+                <button className="bg-green-600 py-3 font-bold text-white rounded-lg hover:bg-green-800" onClick={(e)=>handleLogin(e)}>
+                    ENTRAR
+                    </button>
+                <Link href="/register" className="text-center underline">Cadastrar-se</Link>
+        </AuthPage>
     );
 }
 
