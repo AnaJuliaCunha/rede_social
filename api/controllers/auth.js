@@ -100,7 +100,7 @@ export const login = (req, res) => {
             process.env.TOKEN,
             { algorithm: "HS256" }
           );
-          res.status(200).json({ msg: "Usuario logado com sucesso!", token, refreshToken });
+          res.status(200).json({ msg: "Usuario logado com sucesso!", token, refreshToken }); //Alterar mensgem para - msg: "Usuario Logado com sucesso!",data:{user, token:{token, refreshToken}},
         } catch (err) {
           console.log(err);
           return res.status(500).json({
