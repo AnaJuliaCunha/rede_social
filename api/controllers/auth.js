@@ -75,7 +75,7 @@ export const login = (req, res) => {
       } else {
         const user = data[0];
 
-        const checkPassword = await bcrypt.compare(password, user[0].password);
+        const checkPassword = await bcrypt.compare(password, user.password);
 
         if (!checkPassword) {
           return res.status(422).json({
@@ -100,7 +100,7 @@ export const login = (req, res) => {
             process.env.TOKEN,
             { algorithm: "HS256" }
           );
-          res.status(200).json({ msg: "Usuario logado com sucesso!", token, refreshToken }); //Alterar mensgem para - msg: "Usuario Logado com sucesso!",data:{user, token:{token, refreshToken}},
+          res.status(200).json({ msg: "Usuario Logado com sucesso!",data:{user, token:{Token, refreshToken}}, }); //Alterar mensgem para - msg: "Usuario Logado com sucesso!",data:{user, token:{token, refreshToken}},
         } catch (err) {
           console.log(err);
           return res.status(500).json({
