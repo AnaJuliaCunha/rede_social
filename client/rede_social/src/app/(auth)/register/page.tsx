@@ -46,7 +46,7 @@ function Register () {
                 Cadastrar-se
                 </button>
             <Link href="/login" className="text-center underline">Logar</Link>
-       </>
+        </>
     )
 }
 

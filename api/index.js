@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./routes/user.js";
 import authRouter from "./routes/auth.js";
+import postRouter from "./routes/post.js"
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/users/", userRouter);
 app.use("/api/auth/", authRouter);
+app.use("/api/post/", postRouter);
 app.use(cors());
 
 app.listen(8001, () => {
