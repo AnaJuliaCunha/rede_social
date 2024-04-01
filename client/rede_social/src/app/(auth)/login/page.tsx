@@ -1,6 +1,8 @@
 "use client";
+
 import { makeRequest } from "../../../../axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import  AuthInput  from "@/components/AuthInput";
 
@@ -9,6 +11,8 @@ function Login (){
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
     const [error, setError]=useState("");
+
+    const router = useRouter();
 
     const handleLogin = (e:any)=>{
       e.preventDefault()
@@ -23,7 +27,8 @@ function Login (){
           JSON.stringify(res.data.data.token)
           );
           console.log(res.data);
-          setError('');      
+          setError('');
+          router.push("/");
       }).catch((err)=>{
         console.log(err)
         setError(err.response.data.msg)
